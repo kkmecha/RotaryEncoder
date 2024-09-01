@@ -205,7 +205,7 @@ void STM32_encoder::start()
 
 void STM32_encoder::reset()
 {
-    core_util_critical_section_enter(); // ほかのスレッド、ルーチンなどからの変数等のアクセスを制限(Mutexに似てる)
+    core_util_critical_section_enter(); // ほかのスレッド、ルーチンなどからの変数等のアクセスを制限
     __HAL_TIM_CLEAR_FLAG(&_htim, TIM_IT_UPDATE);
     core_util_critical_section_exit(); // 制限を開放
 }
@@ -223,9 +223,7 @@ int32_t  STM32_encoder::get_count()
             _hbits -= 1;
         _count = _htim.Instance->CNT;
     }
-    _angle = int32_t(((_hbits << 16) | _count) / float(_resolution * _times / 360.0)); // 発生したパルス数 / 1°あたりのパルス数  (発生したパルス数を度数法に変換)
+    _angle = int32_t(((_hbits << 16) | _count) / float(_resolution * _times / 360.0));
     core_util_critical_section_exit();
-    //printf("count:%lu, hbits:%lu, (_hbits << 16) | _count:%ld\r\n", _count, _hbits, (_hbits << 16) | _count);
-    //ThisThread::sleep_for(5ms);
     return _angle;
 }
