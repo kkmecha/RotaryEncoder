@@ -5,5 +5,5 @@ class STM32_encoder
   
 class Interrupt_encoder  
   GPIOピンの割り込みを使用したエンコーダーの処理  
-  
+  一般的なのはこっち
 
