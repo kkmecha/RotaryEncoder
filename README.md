@@ -1,0 +1,2 @@
+クラスを2つ用意しています
+class STM32_encoder
