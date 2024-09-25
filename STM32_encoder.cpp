@@ -48,6 +48,8 @@ const TIM_Pin_Map tim_mappings[] = { // 独自のpinmap
     {TIM5,  0xffffffff,  GPIOA,  {PA_0,  GPIO_PIN_0,  PA_1,  GPIO_PIN_1},  GPIO_AF2_TIM5},
     // {TIM5,  0xffffffff,  GPIOH,  {PH_10, GPIO_PIN_10, PH_11, GPIO_PIN_11}, GPIO_AF2_TIM5},
 
+    #elif defined (TARGET_NUCLEO_f446RE)
+
 
     #elif defined (TARGET_NUCLEO_F746ZG) // ok
     // TIM2, TIM5...32bit TIM3, TIM4...16bit
