@@ -1,8 +1,6 @@
 #include "STM32_encoder.h"
 
-// エンコーダーモードを使ったプログラム
-const TIM_Pin_Map tim_mappings[] = { // 独自のpinmap
-    // TIM_TypeDef*, GPIO_TypeDef*, (PinName, uint16_t)x2, uint8_t
+const TIM_Pin_Map tim_mappings[] = {
     #ifdef TARGET_NUCLEO_F072RB
     // TIM2...32bit TIM3...16bit
     // Max Interface clock..48, Man timer clock...48
@@ -16,7 +14,7 @@ const TIM_Pin_Map tim_mappings[] = { // 独自のpinmap
     {TIM2,  0xffffffff,  GPIOA,  {PA_5,  GPIO_PIN_5,  PA_1,  GPIO_PIN_1},  GPIO_AF2_TIM2},
     {TIM2,  0xffffffff,  GPIOA,  {PA_15, GPIO_PIN_15, PA_1,  GPIO_PIN_1},  GPIO_AF2_TIM2},
 
-    #elif defined (TARGET_NUCLEO_F303K8) // 確認できなかった
+    #elif defined (TARGET_NUCLEO_F303K8)
     // TIM2...32bit TIM3...16bit
     // Max Interface clock..72, Man timer clock...72
 
@@ -32,7 +30,6 @@ const TIM_Pin_Map tim_mappings[] = { // 独自のpinmap
     #elif defined (TARGET_NUCLEO_F401RE)
     // TIM2, TIM5...32bit TIM3, TIM4...16bit
     // Max Interface clock..42, Man timer clock...84
-    // 16bit
     {TIM3,  0xffff,  GPIOA,  {PA_6,  GPIO_PIN_6,  PA_7,  GPIO_PIN_7},  GPIO_AF2_TIM3},
     {TIM3,  0xffff,  GPIOB,  {PB_4,  GPIO_PIN_4,  PB_5,  GPIO_PIN_5},  GPIO_AF2_TIM3},
     {TIM3,  0xffff,  GPIOC,  {PC_6,  GPIO_PIN_6,  PC_7,  GPIO_PIN_7},  GPIO_AF2_TIM3},
@@ -40,7 +37,6 @@ const TIM_Pin_Map tim_mappings[] = { // 独自のpinmap
     {TIM4,  0xffff,  GPIOB,  {PB_6,  GPIO_PIN_6,  PB_7,  GPIO_PIN_7},  GPIO_AF2_TIM4},
     {TIM4,  0xffff,  GPIOD,  {PD_12, GPIO_PIN_12, PD_13, GPIO_PIN_13}, GPIO_AF2_TIM4},
 
-    // 32bit
     // {TIM2,  0xffffffff,  GPIOA,  {PA_0,  GPIO_PIN_0,  PA_1,  GPIO_PIN_1},  GPIO_AF1_TIM2},
     {TIM2,  0xffffffff,  GPIOA,  {PA_5,  GPIO_PIN_5,  PA_1,  GPIO_PIN_1},  GPIO_AF1_TIM2},
     {TIM2,  0xffffffff,  GPIOA,  {PA_15, GPIO_PIN_15, PA_1,  GPIO_PIN_1},  GPIO_AF1_TIM2},
@@ -51,10 +47,9 @@ const TIM_Pin_Map tim_mappings[] = { // 独自のpinmap
     #elif defined (TARGET_NUCLEO_f446RE)
 
 
-    #elif defined (TARGET_NUCLEO_F746ZG) // ok
+    #elif defined (TARGET_NUCLEO_F746ZG)
     // TIM2, TIM5...32bit TIM3, TIM4...16bit
     // Max Interface clock..54, Man timer clock...216
-    // 16bit
     {TIM3,  0xffff,  GPIOA,  {PA_6,  GPIO_PIN_6,  PA_7,  GPIO_PIN_7},  GPIO_AF2_TIM3},
     {TIM3,  0xffff,  GPIOB,  {PB_4,  GPIO_PIN_4,  PB_5,  GPIO_PIN_5},  GPIO_AF2_TIM3},
     {TIM3,  0xffff,  GPIOC,  {PC_6,  GPIO_PIN_6,  PC_7,  GPIO_PIN_7},  GPIO_AF2_TIM3},
@@ -62,17 +57,15 @@ const TIM_Pin_Map tim_mappings[] = { // 独自のpinmap
     {TIM4,  0xffff,  GPIOB,  {PB_6,  GPIO_PIN_6,  PB_7,  GPIO_PIN_7},  GPIO_AF2_TIM4},
     {TIM4,  0xffff,  GPIOD,  {PD_12, GPIO_PIN_12, PD_13, GPIO_PIN_13}, GPIO_AF2_TIM4}, 
 
-    // 32bit
     // {TIM2,  0xffffffff,  GPIOA,  {PA_0,  GPIO_PIN_0,  PA_1,  GPIO_PIN_1},  GPIO_AF1_TIM2},
     {TIM2,  0xffffffff,  GPIOA,  {PA_5,  GPIO_PIN_5,  PA_1,  GPIO_PIN_1},  GPIO_AF1_TIM2},
     {TIM2,  0xffffffff,  GPIOA,  {PA_15, GPIO_PIN_15, PA_1,  GPIO_PIN_1},  GPIO_AF1_TIM2},
 
     {TIM5,  0xffffffff,  GPIOA,  {PA_0,  GPIO_PIN_0,  PA_1,  GPIO_PIN_1},  GPIO_AF2_TIM5},
     // {TIM5,  0xffffffff,  GPIOH, PH_10, GPIO_PIN_10, PH_11, GPIO_PIN_11, GPIO_AF2_TIM5},
-    #elif defined (TARGET_NUCLEO_F767ZI) // ok
+    #elif defined (TARGET_NUCLEO_F767ZI)
     // TIM2, TIM5...32bit TIM1, TIM3, TIM4, TIM8...16bit 
     // Max Interface clock..54, Man timer clock...216 (TIM1とTIM8は108, 216)
-    // 16bit
     {TIM1,  0xffff,  GPIOA,  {PA_8,  GPIO_PIN_8,  PA_9,  GPIO_PIN_9},  GPIO_AF1_TIM1},
     {TIM1,  0xffff,  GPIOA,  {PA_15, GPIO_PIN_15, PA_9,  GPIO_PIN_9},  GPIO_AF1_TIM1},
     {TIM1,  0xffff,  GPIOE,  {PE_9,  GPIO_PIN_9,  PE_11, GPIO_PIN_11}, GPIO_AF1_TIM1},
@@ -88,7 +81,6 @@ const TIM_Pin_Map tim_mappings[] = { // 独自のpinmap
     {TIM8,  0xffff,  GPIOC,  {PC_6,  GPIO_PIN_6,  PC_7,  GPIO_PIN_7},  GPIO_AF3_TIM8},
     // {TIM8,  0xffff,  GPIOC, PI_5,  GPIO_PIN_5,  PI_6,  GPIO_PIN_6,  GPIO_AF3_TIM8},
 
-    // 32bit
     {TIM2,  0xffffffff,  GPIOA,  {PA_0,  GPIO_PIN_0,  PA_1,  GPIO_PIN_1},  GPIO_AF1_TIM2},
     {TIM2,  0xffffffff,  GPIOA,  {PA_5,  GPIO_PIN_5,  PA_1,  GPIO_PIN_1},  GPIO_AF1_TIM2},
     {TIM2,  0xffffffff,  GPIOA,  {PA_15, GPIO_PIN_15, PA_1,  GPIO_PIN_1},  GPIO_AF1_TIM2},
@@ -106,9 +98,9 @@ STM32_encoder::STM32_encoder(PinName slit_a, PinName slit_b, int resolution, int
  
 void STM32_encoder::GPIO_InitPeriph(PinName slit_a, PinName slit_b)
 {
-    for(const TIM_Pin_Map& mapping : tim_mappings){ // 配列の全要素の走査
-        if(mapping.Pin_name.pin_a == slit_a && mapping.Pin_name.pin_b == slit_b){ // 引数で指定されたピンがTIM_Pin_Mapとあっているか確認
-            #ifdef TIM1 // マイコンによって定義されているTIMが違うため
+    for(const TIM_Pin_Map& mapping : tim_mappings){
+        if(mapping.Pin_name.pin_a == slit_a && mapping.Pin_name.pin_b == slit_b){
+            #ifdef TIM1
                 if(mapping.tim_instance == TIM1){
                     __TIM1_CLK_ENABLE();
                 }
@@ -179,27 +171,26 @@ void STM32_encoder::start()
 {
     _is_count = true;
 
-    // timer
     for(const TIM_Pin_Map& mapping : tim_mappings){
         if(mapping.Pin_name.pin_a == _a && mapping.Pin_name.pin_b == _b){
             _htim.Instance = mapping.tim_instance;
         }
     }
-    _htim.Init.Period = tim_mappings->tim_max; // TIMx->CNT(パルスカウンタ)の最大値の設定
+    _htim.Init.Period = tim_mappings->tim_max;
     _htim.Init.Prescaler = 0;
-    _htim.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1; // クロックの何分の一でカウントの計算をするか
+    _htim.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
     _htim.Init.CounterMode = TIM_COUNTERMODE_UP;
 
     // CH1の設定
-    _encoder.EncoderMode = TIM_ENCODERMODE_TI12; // CH1とCH2の両方を読み取る
+    _encoder.EncoderMode = TIM_ENCODERMODE_TI12;
     _encoder.IC1Filter = 0x0f;
-    _encoder.IC1Polarity = TIM_INPUTCHANNELPOLARITY_RISING; // 立ち上がりエッジのとき
-    _encoder.IC1Prescaler = TIM_ICPSC_DIV4; // 4逓倍を表す
+    _encoder.IC1Polarity = TIM_INPUTCHANNELPOLARITY_RISING;
+    _encoder.IC1Prescaler = TIM_ICPSC_DIV4;
     _encoder.IC1Selection = TIM_ICSELECTION_DIRECTTI;
  
     // CH2の設定
     _encoder.IC2Filter = 0x0f;
-    _encoder.IC2Polarity = TIM_INPUTCHANNELPOLARITY_FALLING; // 立ち下がりエッジのとき
+    _encoder.IC2Polarity = TIM_INPUTCHANNELPOLARITY_FALLING;
     _encoder.IC2Prescaler = TIM_ICPSC_DIV4;
     _encoder.IC2Selection = TIM_ICSELECTION_DIRECTTI;
 
@@ -213,9 +204,9 @@ void STM32_encoder::stop(){
 
 void STM32_encoder::reset()
 {
-    core_util_critical_section_enter(); // ほかのスレッド、ルーチンなどからの変数等のアクセスを制限
+    core_util_critical_section_enter();
     __HAL_TIM_CLEAR_FLAG(&_htim, TIM_IT_UPDATE);
-    core_util_critical_section_exit(); // 制限を開放
+    core_util_critical_section_exit();
 }
 
 int32_t  STM32_encoder::get_count()
