@@ -36,4 +36,4 @@ class STM32_encoder{
     GPIO_InitTypeDef _GPIO_InitStruct;
     TIM_Encoder_InitTypeDef _encoder;
 };
-#endif
+#endif // __STM32_ENCODER__
