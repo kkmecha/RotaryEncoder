@@ -1,6 +1,5 @@
 #include "Interrupt_encoder.h"
 
-// 割り込み処理でのプログラム
 Interrupt_encoder::Interrupt_encoder(PinName a, PinName b, int resolution, int times)
                   : _slit_a(a), _slit_b(b), _resolution(resolution), _times(times)
 {  
