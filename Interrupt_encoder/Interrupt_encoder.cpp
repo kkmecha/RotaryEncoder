@@ -4,7 +4,7 @@ Interrupt_encoder::Interrupt_encoder(PinName a, PinName b, int resolution, int t
                   : _slit_a(a), _slit_b(b), _resolution(resolution), _times(times)
 {  
     callback_pulse_a = callback(this, &Interrupt_encoder::pulse_a);
-    callback_pulse_b = callback(this, &Interrupt_encoder::pulse_a);
+    callback_pulse_b = callback(this, &Interrupt_encoder::pulse_b);
     _angle_per_pulse = 360.0 / _resolution * _times;
 }
 
