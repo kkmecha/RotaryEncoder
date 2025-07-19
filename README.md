@@ -48,11 +48,11 @@ Interrupt_encoder encoder2(PB_6, PB_7);
 int encoder1_angle, encoder2_angle;
 
 int main(){
-	   while(true){
-		     encoder1_angle = encoder1.get_count();
-		     encoder2_angle = encoder2.get_count();
+     while(true){
+         encoder1_angle = encoder1.get_count();
+         encoder2_angle = encoder2.get_count();
          printf("angle1:%d, angle2:%d\r\n", encoder1_angle, encoder2_angle);
          ThisThread::sleep_for(5ms);
-	    }
+     }
 }
 ```
