@@ -9,7 +9,6 @@ STM32マイコン標準搭載のエンコーダーモードを使用したモー
 精度はこちらの方がいいです  
 
 サンプルコード  
-```markdoown
 ``` cpp
 #include "RotaryEncoder.h"
 #include "mbed.h"
@@ -38,7 +37,6 @@ int main(){
 マイコンのGPIOピンに対しての割り込みを使用したモードです もっとも一般的で扱いやすいです  
 
 サンプルコード  
-```markdown
 ```cpp
 #include "mbed.h"
 #include "RotaryEncoder.h"
