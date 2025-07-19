@@ -25,7 +25,7 @@ int main(){
     encoder1.reset(); // データの初期化
     encoder2.reset();
     while(true){
-    	  encoder1_angle = encoder1.get_count();
+        encoder1_angle = encoder1.get_count();
         encoder2_angle = encoder2.get_count();
         printf("angle1:%d, angle2:%d\r\n", encoder1_angle, encoder2_angle);
         ThisThread::sleep_for(5ms);
@@ -48,6 +48,10 @@ Interrupt_encoder encoder2(PB_6, PB_7);
 int encoder1_angle, encoder2_angle;
 
 int main(){
+     encoder1.start();
+     encoder2.start();
+     encoder1.reset();
+     encoder2.reset()
      while(true){
          encoder1_angle = encoder1.get_count();
          encoder2_angle = encoder2.get_count();
