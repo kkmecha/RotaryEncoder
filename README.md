@@ -2,6 +2,15 @@
 
 
 クラスを2つ用意しています  
+
+
+```python
+# サンプルPythonコード
+def hello_world():
+    print("Hello, GitHub!")
+
+hello_world()
+
   
 **class STM32_encoder**  
  STM32の機能であるエンコーダー機能を使ったロータリーエンコーダーの処理  
