@@ -10,6 +10,6 @@ def create_directory_if_not_exists(path):
         print(f"Directory '{path}' created.")
     else:
         print(f"Directory '{path}' already exists.")
-
+```
 # 使用例
 create_directory_if_not_exists("my_new_folder")
