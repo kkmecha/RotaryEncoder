@@ -1,22 +1,15 @@
-2025/07/19 不具合を修正しました
+**例:**
 
-
-クラスを2つ用意しています  
-
-
+```markdown
 ```python
-# サンプルPythonコード
-def hello_world():
-    print("Hello, GitHub!")
+import os
 
-hello_world()
+def create_directory_if_not_exists(path):
+    if not os.path.exists(path):
+        os.makedirs(path)
+        print(f"Directory '{path}' created.")
+    else:
+        print(f"Directory '{path}' already exists.")
 
-  
-**class STM32_encoder**  
- STM32の機能であるエンコーダー機能を使ったロータリーエンコーダーの処理  
- 使える内部タイマーの数が限られ、マイコンによっても数が違うので用途は限定的になるかも  
-  
-**class Interrupt_encoder**  
- GPIOピンの割り込みを使用したロータリーエンコーダーの処理  
- 一般的なのはこっち
-
+# 使用例
+create_directory_if_not_exists("my_new_folder")
