@@ -209,9 +209,9 @@ void STM32_encoder::reset()
     core_util_critical_section_exit();
 }
 
-int32_t  STM32_encoder::get_count()
+int64_t  STM32_encoder::get_angle()
 {
-    int32_t _angle;
+    int64_t _angle;
     if(_is_count){
         int32_t _count;
         core_util_critical_section_enter();
@@ -224,9 +224,11 @@ int32_t  STM32_encoder::get_count()
                 _hbits -= 1;
             _count = _htim.Instance->CNT;
         }
-        _angle = int32_t(((_hbits << 16) | _count) / float(_resolution * _times / 360.0));
+        _angle = int64_t(((_hbits << 16) | _count) / float(_resolution * _times / 360.0)); 
         core_util_critical_section_exit();
         
     }
     return _angle;
 }
+
+
