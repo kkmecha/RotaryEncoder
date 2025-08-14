@@ -1,4 +1,5 @@
 2025/07/19 不具合を修正しました
+2025/08/14 get_angle関数の戻り値をint64_t(long int)に変更しました
 
 # RotaryEncoder  
 インクリメンタルエンコーダー専用ライブラリです
@@ -16,13 +17,13 @@ STM32マイコン標準搭載のエンコーダーモードを使用したモー
 BufferedSerial pc(USBRX, USBTX, 9600);
 STM32_encoder encoder1(PA_6, PA_7);
 
-int32_t encoder1_angle; // get_count()の返り値はint32_t型
+int64_t encoder1_angle; // get_angle()の返り値はint64_t型
 
 int main(){
     encoder1.start(); // エンコーダーモードに設定
     encoder1.reset(); // データの初期化
     while(true){
-        encoder1_angle = encoder1.get_count();
+        encoder1_angle = encoder1.get_angle();
         printf("angle1:%d\r\n", encoder1_angle);
         ThisThread::sleep_for(5ms);
     }
@@ -40,13 +41,13 @@ int main(){
 BufferedSerial pc(USBRX, USBTX, 9600);
 Interrupt_encoder encoder1(PA_6, PA_7);
 
-int encoder1_angle, encoder2_angle;
+int64_t encoder1_angle, encoder2_angle;
 
 int main(){
      encoder1.start();
      encoder1.reset();
      while(true){
-         encoder1_angle = encoder1.get_count();
+         encoder1_angle = encoder1.get_angle();
          printf("angle1:%d\r\n", encoder1_angle);
          ThisThread::sleep_for(5ms);
      }
