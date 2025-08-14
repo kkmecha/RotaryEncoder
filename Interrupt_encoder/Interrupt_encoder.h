@@ -7,7 +7,7 @@ class Interrupt_encoder{
     public: 
     Interrupt_encoder(PinName a, PinName b, int resolution = 200, int times = 4);
     void start();
-    int get_count();
+    int64_t get_angle();
     void stop();
     void reset();
     
@@ -18,8 +18,9 @@ class Interrupt_encoder{
     Callback<void(void)> callback_pulse_a;
     Callback<void(void)> callback_pulse_b;
     bool _is_count = false;
-    int _resolution, _times, _count = 0, _angle = 0;
+    int64_t _resolution, _times, _count = 0, _angle = 0;
     float _angle_per_pulse;
 };
 
 #endif // __INCLUDE_INTERRUPT_H__
+
