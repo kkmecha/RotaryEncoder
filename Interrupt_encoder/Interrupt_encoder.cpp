@@ -12,7 +12,7 @@ void Interrupt_encoder::start(){
     _is_count = true;
 }
 
-int Interrupt_encoder::get_count(){
+int64_t Interrupt_encoder::get_angle(){
     if(_is_count){
         _slit_a.rise(callback_pulse_a);
         _slit_a.fall(callback_pulse_a);
@@ -48,3 +48,4 @@ void Interrupt_encoder::pulse_b(){
         _count--;
     }
 }
+
