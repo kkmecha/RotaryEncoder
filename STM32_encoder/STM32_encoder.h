@@ -27,13 +27,13 @@ class STM32_encoder{
     void start();
     void stop();
     void reset();
-    int32_t get_count();
+    int64_t get_angle();
 
     private:
     PinName _a, _b;
     int _resolution, _times;
     bool _is_count = false;
-    int32_t _hbits = 0;
+    int64_t _hbits = 0;
     TIM_HandleTypeDef _htim;
     GPIO_InitTypeDef _GPIO_InitStruct;
     TIM_Encoder_InitTypeDef _encoder;
