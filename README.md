@@ -15,19 +15,15 @@ STM32マイコン標準搭載のエンコーダーモードを使用したモー
 
 BufferedSerial pc(USBRX, USBTX, 9600);
 STM32_encoder encoder1(PA_6, PA_7);
-STM32_encoder encoder2(PB_6, PB_7);
 
-int32_t encoder1_angle, encoder2_angle; // get_count()の返り値はint32_t型
+int32_t encoder1_angle; // get_count()の返り値はint32_t型
 
 int main(){
     encoder1.start(); // エンコーダーモードに設定
-    encoder2.start();
     encoder1.reset(); // データの初期化
-    encoder2.reset();
     while(true){
         encoder1_angle = encoder1.get_count();
-        encoder2_angle = encoder2.get_count();
-        printf("angle1:%d, angle2:%d\r\n", encoder1_angle, encoder2_angle);
+        printf("angle1:%d\r\n", encoder1_angle);
         ThisThread::sleep_for(5ms);
     }
 }
@@ -43,19 +39,15 @@ int main(){
 
 BufferedSerial pc(USBRX, USBTX, 9600);
 Interrupt_encoder encoder1(PA_6, PA_7);
-Interrupt_encoder encoder2(PB_6, PB_7);
 
 int encoder1_angle, encoder2_angle;
 
 int main(){
      encoder1.start();
-     encoder2.start();
      encoder1.reset();
-     encoder2.reset()
      while(true){
          encoder1_angle = encoder1.get_count();
-         encoder2_angle = encoder2.get_count();
-         printf("angle1:%d, angle2:%d\r\n", encoder1_angle, encoder2_angle);
+         printf("angle1:%d\r\n", encoder1_angle);
          ThisThread::sleep_for(5ms);
      }
 }
