@@ -1,7 +1,7 @@
-2025/07/19 不具合を修正しました
-2025/08/14 get_angle関数の戻り値をint64_t(long int)に変更しました
+2025/07/19 不具合を修正しました  
+2025/08/14 get_angle関数の戻り値をint64_t(long int)に変更しました  
 2026/05/04 STM32のInputCaptureモードを使用したInCap_encoderクラスを追加しました  
-
+  
 # RotaryEncoder  
 インクリメンタルエンコーダー専用ライブラリです  
 STM32_encoderとInterrupt_encoderの２つのクラスを用意しています  
