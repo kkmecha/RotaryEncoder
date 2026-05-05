@@ -4,8 +4,12 @@
   
 # RotaryEncoder  
 インクリメンタルエンコーダー専用ライブラリです  
-STM32_encoderとInterrupt_encoderの２つのクラスを用意しています  
-
+InCap_encoderとSTM32_encoder、Interrupt_encoderの3つのクラスを用意しています  
+  
+  
+**InCap_encoder**  
+STM32のInput Captureという機能を使用したモードです 一般的なパルス数を数える方式ではなくパルス間の時間を計測し、累積角度だけでなくrpm、rpm/sも安定して取得できます  
+  
 **STM32_encoder**  
 STM32マイコン標準搭載のエンコーダーモードを使用したモードです 内部でタイマーを分けて使用するため、タイマーの管理に注意が必要です  
 精度はこちらの方がいいです  
